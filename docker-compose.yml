@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   api-ia:
     build:
@@ -11,7 +9,8 @@ services:
     environment:
       FLASK_ENV: development
       FLASK_DEBUG: "1"
-  
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      GEMINI_MODEL_ID: ${GEMINI_MODEL_ID:-gemini-2.5-flash-lite}
     volumes:
       - ./PF-API-IA:/app
     networks:
@@ -23,12 +22,13 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     ports:
-      - "5288:5288"
+      - "5288:5000"
     environment:
       ASPNETCORE_URLS: "http://0.0.0.0:5000"
-
+      ASPNETCORE_ENVIRONMENT: "Docker"
     volumes:
-      - ./PF-Backend:/src
+      - ./PF-Backend/appsettings.Docker.json:/app/appsettings.Docker.json
+      - ./PF-Backend/data:/data
       - ./assets/screenshots:/assets/screenshots:rw
     depends_on:
       - api-ia
