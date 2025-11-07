@@ -1,0 +1,61 @@
+version: "3.9"
+
+services:
+  api-ia:
+    build:
+      context: ./PF-API-IA
+      dockerfile: Dockerfile
+    container_name: api-ia
+    ports:
+      - "5001:5001"
+    environment:
+      FLASK_ENV: development
+      FLASK_DEBUG: "1"
+  
+    volumes:
+      - ./PF-API-IA:/app
+    networks:
+      - pf-net
+
+  backend:
+    build:
+      context: ./PF-Backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "5288:5288"
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:5000"
+
+    volumes:
+      - ./PF-Backend:/src
+      - ./assets/screenshots:/assets/screenshots:rw
+    depends_on:
+      - api-ia
+    networks:
+      - pf-net
+
+  frontend:
+    build:
+      context: ./PF-Frontend
+      dockerfile: Dockerfile
+      target: dev
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    environment:
+
+      VITE_BACKEND_URL: "http://backend:5000"
+      VITE_API_IA_URL: "http://api-ia:5001"
+    volumes:
+      - ./PF-Frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+      - api-ia
+    networks:
+      - pf-net
+
+networks:
+  pf-net:
+    name: pf-net
