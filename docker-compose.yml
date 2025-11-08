@@ -11,8 +11,12 @@ services:
       FLASK_DEBUG: "1"
       GOOGLE_API_KEY: ${GOOGLE_API_KEY}
       GEMINI_MODEL_ID: ${GEMINI_MODEL_ID:-gemini-2.5-flash-lite}
+
+      API_BASE_URL: "http://localhost:5001"
     volumes:
       - ./PF-API-IA:/app
+  
+      - ./assets:/assets:rw
     networks:
       - pf-net
 
@@ -29,7 +33,8 @@ services:
     volumes:
       - ./PF-Backend/appsettings.Docker.json:/app/appsettings.Docker.json
       - ./PF-Backend/data:/data
-      - ./assets/screenshots:/assets/screenshots:rw
+
+      - ./assets:/assets:rw
     depends_on:
       - api-ia
     networks:
@@ -44,7 +49,6 @@ services:
     ports:
       - "5173:5173"
     environment:
-
       VITE_BACKEND_URL: "http://backend:5000"
       VITE_API_IA_URL: "http://api-ia:5001"
     volumes:
