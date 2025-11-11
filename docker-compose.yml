@@ -31,8 +31,8 @@ services:
       ASPNETCORE_URLS: "http://0.0.0.0:5000"
       ASPNETCORE_ENVIRONMENT: "Docker"
     volumes:
-      - ./PF-Backend/appsettings.Docker.json:/app/appsettings.Docker.json
-      - ./PF-Backend/data:/data
+      - ./PF-Backend/src/AnalyzerGateway.Api/appsettings.Docker.json:/app/appsettings.Docker.json
+      - ./PF-Backend/src/data:/data
 
       - ./assets:/assets:rw
     depends_on:
