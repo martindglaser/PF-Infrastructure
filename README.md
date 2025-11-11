@@ -1,44 +1,42 @@
-## Despliegue con Docker
-Este proyecto utiliza Docker Compose para orquestar y ejecutar todos los servicios (frontend, backend, api-ia) de forma unificada. Esta guía reemplaza el método anterior de iniciar cada repositorio de forma individual.
+# Pruebas Automaticas QA con Inteligencia Artificial
 
-## Prerrequisitos
+## Prerrequisitos para la instalación
 Antes de comenzar, asegúrate de tener instalado y en ejecución:
 
--Git
+- Git
 
--Docker Desktop (Es fundamental que la aplicación esté abierta y corriendo antes de continuar).
+- Docker Desktop (Es fundamental que la aplicación esté abierta y corriendo antes de continuar).
 
-## Configuración de Entorno
-Este proyecto requiere una variable de entorno para la API de Google. Esta configuración solo es necesaria la primera vez.
 
-En la carpeta raíz del proyecto (al mismo nivel que docker-compose.yml), crea un archivo nuevo llamado .env.
+## Instalación
+#### Windows
+Abrí Docker
 
-Abre el archivo .env y añade la siguiente línea, reemplazando el valor de ejemplo por tu clave de API:
+Abrí tu terminal donde quieras que esté ubicado el proyecto y ejecutá los siguientes comandos:
 
-GOOGLE_API_KEY=TU_API_KEY_DE_GOOGLE_GEMINI
+(Recordá reemplazar tu API Key de Gemini en su comando)
+    
+    git clone https://github.com/martindglaser/PF-Infrastructure.git
 
-## Inicio de Servicios
-Para construir las imágenes de Docker e iniciar todos los contenedores, abre una terminal en la carpeta raíz del proyecto y ejecuta:
+    cd PF-Infrastructure
 
-docker-compose up -d --build
+    git submodule set-url PF-API-IA https://github.com/martindglaser/PF-API-IA.git
+    git submodule set-url PF-Backend https://github.com/martindglaser/PF-Backend.git
+    git submodule set-url PF-Frontend https://github.com/martindglaser/PF-Frontend.git
+    git submodule sync --recursive
+    git submodule update --init --recursive
 
-Detalle de los comandos:
+    echo GOOGLE_API_KEY=INSERTA_TU_GOOGLE_GEMINI_API_KEY_ACA > .env
 
---build: Fuerza la reconstrucción de las imágenes. Es necesario la primera vez o si se realizan cambios en el código fuente (ej. Dockerfile, requirements.txt).
+    docker-compose up -d --build
 
--d: (Modo "detached") Ejecuta los contenedores en segundo plano.
+## Resultado
+Ya debería estar corriendo tu aplicación en http://localhost:5173/
+## Autores
 
-## Acceso a la Aplicación
-Una vez que los contenedores se hayan iniciado correctamente (puedes verificar su estado en Docker Desktop), la aplicación estará disponible en:
+- [@martindglaser](https://github.com/martindglaser)
+- [@valentinosara](https://github.com/valentinosara)
+- [@tatianapisani](https://github.com/tatianapisani)
+- [@LucianoAmato7](https://github.com/LucianoAmato7)
 
-Frontend (Aplicación Web): http://localhost:5173
 
-## Cómo Detener los Servicios
-Para detener y eliminar todos los contenedores y redes creados por Docker Compose, ejecuta:
-
-docker-compose down
-
-## La próxima vez que abras VS Code, solo tienes que hacer esto:
-Asegúrate de que Docker Desktop esté abierto y luego, en tu terminal, ejecuta:
-
-docker-compose up -d
