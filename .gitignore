@@ -1,2 +1,3 @@
 /assets/screenshots/*
+!/assets/screenshots/.gitkeep
 .env
