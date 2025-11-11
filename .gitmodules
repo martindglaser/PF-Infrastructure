@@ -1,9 +1,9 @@
 [submodule "PF-Frontend"]
 	path = PF-Frontend
-	url = git@github.com:martindglaser/PF-Frontend.git
+	url = https://github.com/martindglaser/PF-Frontend.git
 [submodule "PF-Backend"]
 	path = PF-Backend
-	url = git@github.com:martindglaser/PF-Backend.git
+	url = https://github.com/martindglaser/PF-Backend.git
 [submodule "PF-API-IA"]
 	path = PF-API-IA
-	url = git@github.com:martindglaser/PF-API-IA.git
+	url = https://github.com/martindglaser/PF-API-IA.git
