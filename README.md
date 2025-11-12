@@ -20,9 +20,6 @@ Abrí tu terminal donde quieras que esté ubicado el proyecto y ejecutá los sig
 
     cd PF-Infrastructure
 
-    git submodule set-url PF-API-IA https://github.com/martindglaser/PF-API-IA.git
-    git submodule set-url PF-Backend https://github.com/martindglaser/PF-Backend.git
-    git submodule set-url PF-Frontend https://github.com/martindglaser/PF-Frontend.git
     git submodule sync --recursive
     git submodule update --init --recursive
 
