@@ -9,7 +9,6 @@ Antes de comenzar, asegúrate de tener instalado y en ejecución:
 
 
 ## Instalación
-#### Windows
 Abrí Docker
 
 Abrí tu terminal donde quieras que esté ubicado el proyecto y ejecutá los siguientes comandos:
