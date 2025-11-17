@@ -42,22 +42,23 @@ Antes de comenzar, asegúrate de tener instalado y en ejecución:
 
 ## 🚀 Instalación
 
-1.  **Clonar el repositorio y submódulos:**
-    Abre tu terminal y clona este repositorio. El flag `--recurse-submodules` es importante para descargar automáticamente el código de los repositorios `PF-Frontend`, `PF-Backend` y `PF-API-IA`.
+1.  **Clonar el repositorio:**
+    Abre tu terminal y clona este repositorio.
 
     ```bash
-    git clone --recurse-submodules [https://github.com/martindglaser/PF-Infrastructure.git](https://github.com/martindglaser/PF-Infrastructure.git)
-    ```
-
-    *(Si ya lo clonaste sin el flag, puedes ejecutar los siguientes comandos para inicializar los submódulos)*:
-    ```bash
-    git submodule sync --recursive
-    git submodule update --init --recursive
+    git clone https://github.com/martindglaser/PF-Infrastructure.git
     ```
 
 2.  **Acceder al directorio:**
     ```bash
     cd PF-Infrastructure
+    ```
+
+3. **Inicializar submódulos**
+
+    ```bash
+    git submodule sync --recursive
+    git submodule update --init --recursive
     ```
 
 3.  **Crear archivo de entorno (`.env`):**
